@@ -1,0 +1,36 @@
+{
+  "name": "bread-n-butter",
+  "version": "1.0.0",
+  "description": "React Fullstack Boilerplate :thumbsup: (NextJS, GraphQL, Mongoose, Styled-Components)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon -w server/index.js --exec babel-node server/index.js ",
+    "build": "next build",
+    "start": "NODE_ENV=production node ./server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saratonite/bread-n-butter.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saratonite/bread-n-butter/issues"
+  },
+  "homepage": "https://github.com/saratonite/bread-n-butter#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "next": "^8.1.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/node": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "nodemon": "^1.19.1"
+  }
+}
