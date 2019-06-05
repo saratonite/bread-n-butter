@@ -1,14 +1,13 @@
 import React from "react";
 import Layout from "../client/components/Layout";
+import SignupForm from "../client/components/SignupForm";
 
-const Index = () => {
+const Login = () => {
   return (
     <Layout>
-      <div>
-        <h1>Welcome</h1>
-      </div>
+      <SignupForm />
     </Layout>
   );
 };
 
-export default Index;
+export default Login;
