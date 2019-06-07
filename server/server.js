@@ -1,11 +1,39 @@
 import express from "express";
+import { ApolloServer } from "apollo-server-express";
 import routes from "./routes";
 
-const server = express();
+import typeDefs from "./graphql/typeDefs";
+import resolvers from "./graphql/resolvers";
+import authDricetive from "./graphql/directives/auth-directive";
 
-server.use(express.json());
+const app = express();
+
+app.use(express.json());
 
 // Attach routes
-server.use("/api", routes);
+app.use("/api", routes);
 
-export default server;
+// Apollo server
+
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  playground: true,
+  context: ({ req, res }) => {
+    req.user = { name: "Sarath" };
+    return {
+      req,
+      res
+    };
+  },
+  schemaDirectives: {
+    auth: authDricetive
+  }
+});
+
+server.applyMiddleware({
+  app,
+  cors: true
+});
+
+export default app;

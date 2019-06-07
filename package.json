@@ -21,8 +21,11 @@
   },
   "homepage": "https://github.com/saratonite/bread-n-butter#readme",
   "dependencies": {
+    "apollo-server-express": "^2.6.2",
+    "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
     "formik": "^1.5.7",
+    "graphql": "^14.3.1",
     "mongoose": "^5.5.13",
     "next": "^8.1.0",
     "react": "^16.8.6",
