@@ -10,7 +10,11 @@ const password = yup
   .required()
   .min(6);
 
-const name = yup.string().min(3);
+const name = yup
+  .string()
+  .min(3)
+  .required()
+  .label("Name");
 
 export const loginValidationSchema = yup.object().shape({
   email,

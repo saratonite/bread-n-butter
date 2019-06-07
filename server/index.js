@@ -1,18 +1,31 @@
+import dotenv from "dotenv";
+dotenv.config();
 import next from "next";
+import mongoose from "mongoose";
 import server from "./server";
 
-const { NODE_ENV, PORT = 3000 } = process.env;
+const {
+  NODE_ENV,
+  PORT = 3000,
+  MONGODB_HOST = "mongodb://127.0.0.1:27017/bnb"
+} = process.env;
 const dev = NODE_ENV !== "production";
 const app = next({ dev });
 
 const handler = app.getRequestHandler();
 
-app.prepare().then(() => {
-  server.get("*", (req, res) => {
-    handler(req, res);
-  });
+(async () => {
+  // Connect mongodb
+  await mongoose.connect(MONGODB_HOST, { useNewUrlParser: true });
 
-  server.listen(PORT, () => {
-    console.log(`App running on port ${PORT}`);
+  // Start server
+  app.prepare().then(() => {
+    server.get("*", (req, res) => {
+      handler(req, res);
+    });
+
+    server.listen(PORT, () => {
+      console.log(`App running on port ${PORT}`);
+    });
   });
-});
+})();
