@@ -1,5 +1,6 @@
 import { Schema, model } from "mongoose";
-import { hash } from "bcryptjs";
+import { hash, compare } from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 const userSchema = new Schema({
   name: String,
@@ -21,6 +22,23 @@ userSchema.pre("save", async function(next) {
 
   next();
 });
+
+// Methods
+
+userSchema.methods.matchPassword = async function(password) {
+  let isOK = await compare(password, this.password);
+
+  return isOK;
+};
+
+userSchema.methods.getToken = async function() {
+  const token = await jwt.sign(
+    { id: this.id, email: this.email },
+    "THE-SECRET-KEY"
+  );
+
+  return token;
+};
 
 const User = model("User", userSchema);
 

@@ -1,4 +1,5 @@
 import React from "react";
+import Router from "next/router";
 import {
   InputField,
   FeildGroup,
@@ -7,6 +8,7 @@ import {
 } from "../components/styles";
 import { Formik } from "formik";
 import { signupValidationSchema } from "../validations";
+import { convertServerValidationErrors } from "../lib/error-handlers";
 
 import { gql } from "apollo-boost";
 import { Mutation } from "react-apollo";
@@ -34,13 +36,32 @@ const SignupForm = () => {
                 confirm_password: ""
               }}
               validationSchema={signupValidationSchema}
-              onSubmit={(values, actions) => {
+              onSubmit={async (values, actions) => {
                 console.log("Submitting signup form");
-                register({ variables: values });
-                actions.resetForm();
+                try {
+                  await register({ variables: values });
+                  actions.resetForm();
+                  alert("Thank you for signup");
+                  Router.push("/login");
+                } catch (e) {
+                  let serverErrorMsgs = convertServerValidationErrors(e);
+
+                  if (serverErrorMsgs) {
+                    actions.setErrors(serverErrorMsgs);
+                  } else {
+                    actions.setErrors({ email: e.graphQLErrors[0].message });
+                  }
+                }
               }}
             >
-              {({ values, errors, handleChange, handleSubmit }) => (
+              {({
+                values,
+                errors,
+                handleChange,
+                handleSubmit,
+                loading,
+                isValid
+              }) => (
                 <form onSubmit={handleSubmit}>
                   <h2>Signup :)</h2>
                   <InputField
@@ -75,7 +96,12 @@ const SignupForm = () => {
                     error={errors.confirm_password}
                   />
                   <FeildGroup>
-                    <Button primary full type="submit">
+                    <Button
+                      primary
+                      full
+                      type="submit"
+                      disabled={loading || !isValid}
+                    >
                       Signup&rarr;
                     </Button>
                   </FeildGroup>

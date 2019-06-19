@@ -21,6 +21,7 @@ export const loginValidationSchema = yup.object().shape({
   password
 });
 
+//TODO : Confirm password shoul match the password field
 export const signupValidationSchema = yup.object().shape({
   name,
   email,

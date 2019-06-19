@@ -54,6 +54,9 @@ export const Button = styled.button`
   &:hover {
     background-color: #bbb;
   }
+  &:disabled {
+    cursor: not-allowed;
+  }
 
   ${props =>
     props.primary &&
@@ -62,6 +65,10 @@ export const Button = styled.button`
       color: #fff;
       &:hover {
         background-color: #ff5722;
+      }
+
+      &:disabled {
+        background-color: #ffab91;
       }
     `}
 
