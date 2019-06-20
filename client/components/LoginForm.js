@@ -11,6 +11,7 @@ import {
 } from "../components/styles";
 import { loginValidationSchema } from "../validations";
 import { convertServerValidationErrors } from "../lib/error-handlers";
+import { setAuthCookie } from "../lib/auth";
 
 const LOGIN_MUTATION = gql`
   mutation LOGIN($email: String!, $password: String!) {
@@ -38,10 +39,12 @@ const LoginForm = () => {
                   if (data.token) {
                     // Logedin successfully
                   }
-                  console.log("login data", data);
+
+                  setAuthCookie(data.data.login.token);
 
                   Router.push("/dashboard");
                 } catch (e) {
+                  console.log("Err ", e);
                   let serverErrorMsgs = convertServerValidationErrors(e);
 
                   if (serverErrorMsgs) {

@@ -4,6 +4,7 @@
 export const convertServerValidationErrors = error => {
   if (
     !error.graphQLErrors &&
+    !error.graphQLErrors[0] &&
     !error.graphQLErrors[0].extensions.exception.details
   )
     return false;

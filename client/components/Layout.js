@@ -1,6 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import styled, { css, createGlobalStyle } from "styled-components";
+import Cookies from "browser-cookies";
+import Router from "next/router";
 
 const GlobalStyle = createGlobalStyle`
 *,*::before,*::after {
@@ -31,13 +33,18 @@ const LayoutStyle = styled.div`
     width: 100%;
     max-width: 1140px;
     margin: 0 auto;
-    a {
+    a,
+    button {
       padding: 1rem 1.5rem 1rem 0;
       display: inline-block;
       color: #fff;
       font-weight: 700;
       text-transform: uppercase;
       text-decoration: none;
+      border: none;
+      background-color: inherit;
+      font-size: inherit;
+      cursor: pointer;
     }
   }
 
@@ -55,7 +62,7 @@ const NavLink = ({ children, to }) => (
   </Link>
 );
 
-const Layout = ({ children }) => {
+const Layout = ({ children, user }) => {
   return (
     <LayoutStyle>
       <GlobalStyle />
@@ -63,8 +70,26 @@ const Layout = ({ children }) => {
         <nav>
           <NavLink to="/">Bread & Butter</NavLink>
           <NavLink to="/about">About</NavLink>
-          <NavLink to="/login">Login</NavLink>
-          <NavLink to="/signup">Signup</NavLink>
+          {user && (
+            <>
+              <NavLink to="/dashboard">Dashbaord</NavLink>
+              <NavLink to="/profile">{user.name}</NavLink>
+              <button
+                onClick={() => {
+                  Cookies.erase("token");
+                  Router.push("/");
+                }}
+              >
+                logout
+              </button>
+            </>
+          )}
+          {!user && (
+            <>
+              <NavLink to="/login">Login</NavLink>
+              <NavLink to="/signup">Signup</NavLink>
+            </>
+          )}
         </nav>
       </header>
 

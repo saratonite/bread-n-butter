@@ -1,6 +1,7 @@
 import Layout from "../client/components/Layout";
+import AuthGuard from "../client/components/wrappers/AuthGuard";
 const Dashboard = () => {
-  return <Layout>Dashboard</Layout>;
+  return <h1>Dashboard</h1>;
 };
 
-export default Dashboard;
+export default AuthGuard(Dashboard);

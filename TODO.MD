@@ -5,8 +5,9 @@
 - [x] Styled component setup
 - [x] Login / Signup page with validations
 - [x] Mongoose connection 
-- [ ] Apollo GraphQL Server Setup
-- [ ] Mongoose Models and Resolvers
-- [ ] Apollo Client React setup
-- [ ] User signup / login (backend - graphql muations)
-- [ ] Server Side Validations
+- [x] Apollo GraphQL Server Setup
+- [x] Mongoose Models and Resolvers
+- [x] Apollo Client React setup
+- [x] User signup / login (backend - graphql muations)
+- [x] Server Side Validations
+- [ ] AuthGaurd / Protected routes (Client / Server)

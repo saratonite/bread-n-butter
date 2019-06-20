@@ -1,13 +1,9 @@
 import React from "react";
-import Layout from "../client/components/Layout";
 import LoginForm from "../client/components/LoginForm";
+import OnlyGuest from "../client/components/wrappers/OnlyGuest";
 
 const Login = () => {
-  return (
-    <Layout>
-      <LoginForm />
-    </Layout>
-  );
+  return <LoginForm />;
 };
 
-export default Login;
+export default OnlyGuest(Login);

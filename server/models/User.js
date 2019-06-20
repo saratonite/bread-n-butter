@@ -33,8 +33,8 @@ userSchema.methods.matchPassword = async function(password) {
 
 userSchema.methods.getToken = async function() {
   const token = await jwt.sign(
-    { id: this.id, email: this.email },
-    "THE-SECRET-KEY"
+    { id: this.id, email: this.email, name: this.name },
+    process.env.APP_SECRET
   );
 
   return token;

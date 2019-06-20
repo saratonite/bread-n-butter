@@ -1,5 +1,7 @@
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
+import cookieParser from "cookie-parser";
+import tokenMiddleware from "./middlewares/token-middleware";
 import routes from "./routes";
 
 import typeDefs from "./graphql/typeDefs";
@@ -9,7 +11,9 @@ import authDricetive from "./graphql/directives/auth-directive";
 const app = express();
 
 app.use(express.json());
+app.use(cookieParser());
 
+app.use(tokenMiddleware);
 // Attach routes
 app.use("/api", routes);
 
@@ -20,7 +24,6 @@ const server = new ApolloServer({
   resolvers,
   playground: true,
   context: ({ req, res }) => {
-    req.user = { name: "Sarath" };
     return {
       req,
       res

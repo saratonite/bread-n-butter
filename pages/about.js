@@ -1,14 +1,11 @@
 import React from "react";
-import Layout from "../client/components/Layout";
 
-const Index = () => {
+const About = () => {
   return (
-    <Layout>
-      <div>
-        <h1>About</h1>
-      </div>
-    </Layout>
+    <div>
+      <h1>About</h1>
+    </div>
   );
 };
 
-export default Index;
+export default About;

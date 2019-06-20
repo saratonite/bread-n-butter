@@ -25,6 +25,8 @@
     "apollo-boost": "^0.4.2",
     "apollo-server-express": "^2.6.2",
     "bcryptjs": "^2.4.3",
+    "browser-cookies": "^1.2.0",
+    "cookie-parser": "^1.4.4",
     "express": "^4.17.1",
     "formik": "^1.5.7",
     "graphql": "^14.3.1",
