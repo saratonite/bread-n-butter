@@ -22,28 +22,3 @@ export const getAuthenicatedUser = async context => {
 
   return userData;
 };
-
-export const isTokenValid = context => {
-  let serverToken, clientToken;
-
-  if (!process.browser) {
-    // Server side
-
-    serverToken = context.req.cookies.token || null;
-
-    if (!serverToken) {
-      context.res.redirect("/login");
-      context.res.end();
-    }
-  } else {
-    // Client side
-    clientToken = Cookies.get("token");
-    if (!clientToken) {
-      Router.push("/login");
-    }
-  }
-
-  let isAuth = serverToken || clientToken ? true : false;
-
-  return isAuth;
-};

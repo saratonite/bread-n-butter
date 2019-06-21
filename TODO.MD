@@ -10,4 +10,6 @@
 - [x] Apollo Client React setup
 - [x] User signup / login (backend - graphql muations)
 - [x] Server Side Validations
-- [ ] AuthGaurd / Protected routes (Client / Server)
+- [x] AuthGaurd / Protected routes (Client / Server)
+- [ ] Profile page / server and client
+- [ ] Global error handler for authentication / network errors

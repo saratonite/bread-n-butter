@@ -3,12 +3,14 @@ import * as yup from "yup";
 const email = yup
   .string()
   .required()
-  .email();
+  .email()
+  .label("Email");
 
 const password = yup
   .string()
   .required()
-  .min(6);
+  .min(6)
+  .label("Password");
 
 const name = yup
   .string()

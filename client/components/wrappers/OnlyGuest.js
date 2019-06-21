@@ -27,7 +27,7 @@ const OnlyGuest = PageComponent => {
         pageProps = await PageComponent.getInitialProps(context);
       }
 
-      return { ...pageProps, isAuth: authUser };
+      return pageProps;
     }
     render() {
       return <PageComponent {...this.props} />;

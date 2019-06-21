@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Cookies from "browser-cookies";
 import Router from "next/router";
-import { isTokenValid, getAuthenicatedUser } from "../../lib/auth";
+import { getAuthenicatedUser } from "../../lib/auth";
 const AuthGuard = PageComponent => {
   return class AuthHOC extends Component {
     static async getInitialProps(context) {

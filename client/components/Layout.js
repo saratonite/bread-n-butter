@@ -26,7 +26,7 @@ const LayoutStyle = styled.div`
   display: flex;
   flex-direction: column;
   header {
-    background-color: #f44336;
+    background-color: orangered;
     box-shadow: 0 1rem 2rem #ddd;
   }
   nav {
@@ -68,12 +68,12 @@ const Layout = ({ children, user }) => {
       <GlobalStyle />
       <header>
         <nav>
-          <NavLink to="/">Bread & Butter</NavLink>
+          <NavLink to="/">&#9778; &nbsp;Bread & Butter</NavLink>
           <NavLink to="/about">About</NavLink>
           {user && (
             <>
               <NavLink to="/dashboard">Dashbaord</NavLink>
-              <NavLink to="/profile">{user.name}</NavLink>
+              <NavLink to="/profile">&#133; {user.name}</NavLink>
               <button
                 onClick={() => {
                   Cookies.erase("token");

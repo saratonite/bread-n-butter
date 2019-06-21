@@ -31,8 +31,6 @@ const LoginForm = () => {
               initialValues={{ email: "", password: "" }}
               validationSchema={loginValidationSchema}
               onSubmit={async (values, actions) => {
-                console.log("Submitting login form !");
-
                 try {
                   const data = await login({ variables: values });
 
@@ -44,7 +42,6 @@ const LoginForm = () => {
 
                   Router.push("/dashboard");
                 } catch (e) {
-                  console.log("Err ", e);
                   let serverErrorMsgs = convertServerValidationErrors(e);
 
                   if (serverErrorMsgs) {

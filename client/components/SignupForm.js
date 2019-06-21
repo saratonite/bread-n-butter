@@ -37,7 +37,6 @@ const SignupForm = () => {
               }}
               validationSchema={signupValidationSchema}
               onSubmit={async (values, actions) => {
-                console.log("Submitting signup form");
                 try {
                   await register({ variables: values });
                   actions.resetForm();
