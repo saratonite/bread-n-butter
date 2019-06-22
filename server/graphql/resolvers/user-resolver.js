@@ -4,7 +4,11 @@ import { UserInputError } from "apollo-server-express";
 
 export default {
   Query: {
-    users: (root, args, context, info) => User.find({})
+    users: (root, args, context, info) => User.find({}),
+    me: async (root, args, context, info) => {
+      const user = await User.findById(context.req.user.id);
+      return user;
+    }
   },
 
   Mutation: {

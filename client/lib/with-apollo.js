@@ -5,6 +5,8 @@ export default withApollo(
   ({ ctx, headers, initialState }) =>
     new ApolloClient({
       uri: "http://localhost:3000/graphql",
-      cache: new InMemoryCache().restore(initialState || {})
+      cache: new InMemoryCache().restore(initialState || {}),
+      credentials: "include",
+      headers
     })
 );

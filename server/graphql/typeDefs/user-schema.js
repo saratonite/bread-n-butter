@@ -4,6 +4,7 @@ export default gql`
   directive @auth on FIELD_DEFINITION
   extend type Query {
     users: [User] @auth
+    me: User @auth
   }
   extend type Mutation {
     register(name: String!, email: String!, password: String!): User
