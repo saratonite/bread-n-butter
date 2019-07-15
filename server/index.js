@@ -16,16 +16,21 @@ const handler = app.getRequestHandler();
 
 (async () => {
   // Connect mongodb
-  await mongoose.connect(MONGODB_HOST, { useNewUrlParser: true });
 
-  // Start server
-  app.prepare().then(() => {
-    server.get("*", (req, res) => {
-      handler(req, res);
-    });
+  try {
+    await mongoose.connect(MONGODB_HOST, { useNewUrlParser: true });
 
-    server.listen(PORT, () => {
-      console.log(`App running on port ${PORT}`);
+    // Start server
+    app.prepare().then(() => {
+      server.get("*", (req, res) => {
+        handler(req, res);
+      });
+
+      server.listen(PORT, () => {
+        console.log(`App running on port ${PORT}`);
+      });
     });
-  });
+  } catch (e) {
+    console.log("> MongoDB Connection Error!!!");
+  }
 })();
